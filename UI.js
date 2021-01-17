@@ -17,88 +17,16 @@ class CVEditor {
         //};
         //this.field.appendChild(inputname); 
 
-        this.field.appendChild(createinputtextfield("fist -/surname", this.datenSammlung.name, (v)=>current.datenSammlung.name = v))
-
-
-
-
-
-
-        let inputtele = document.createElement("input"); 
-        inputtele.type = "text";
-        inputtele.placeholder = "phone number";
-        inputtele.value = this.datenSammlung.tele;
-        inputtele.onchange = function () {
-            current.datenSammlung.tele = inputtele.value;
-        };
-        this.field.appendChild(inputtele);
-
-        let inputemails = document.createElement("input");
-        inputemails.type = "text";
-        inputemails.placeholder = "email";
-        inputemails.value = this.datenSammlung.email;
-        inputemails.onchange = function () {
-            current.datenSammlung.email = inputemails.value;
-        };
-        this.field.appendChild(inputemails);
-
-        let inputadr1 = document.createElement("input");
-        inputadr1.type = "text";
-        inputadr1.placeholder = "adress1";
-        inputadr1.value = this.datenSammlung.adress1;
-        inputadr1.onchange = function () {
-            current.datenSammlung.adress1 = inputadr1.value;
-        };
-        this.field.appendChild(inputadr1);
-
-        let inputadr2 = document.createElement("input");
-        inputadr2.type = "text";
-        inputadr2.placeholder = "adress2";
-        inputadr2.value = this.datenSammlung.adress2;
-        inputadr2.onchange = function () {
-            current.datenSammlung.adress2 = inputadr2.value;
-        };
-        this.field.appendChild(inputadr2);
-
-        let inputexp = document.createElement("textarea");
-        inputexp.rows = "4";
-        inputexp.cols = "64";
-        inputexp.placeholder = "experiences";
-        inputexp.value = this.datenSammlung.experience;
-        inputexp.onchange = function () {
-            current.datenSammlung.experience = inputexp.value;
-        };
-        this.field.appendChild(inputexp);
-
-        let inputref = document.createElement("textarea");
-        inputref.rows = "4";
-        inputref.cols = "64";
-        inputref.placeholder = "refrences";
-        inputref.value = this.datenSammlung.refrences;
-        inputref.onchange = function () {
-            current.datenSammlung.refrences = inputref.value;
-        };
-        this.field.appendChild(inputref);
-
-        let inputprofes = document.createElement("input");
-        inputprofes.type = "text";
-        inputprofes.placeholder = "profession";
-        inputprofes.value = this.datenSammlung.profession;
-        inputprofes.onchange = function () {
-            current.datenSammlung.profession = inputprofes.value;
-        };
-        this.field.appendChild(inputprofes);
-
-        let inputprofile = document.createElement("textarea");
-        inputprofile.rows = "4";
-        inputprofile.cols = "64";
-        inputprofile.placeholder = "refrences";
-        inputprofes.value = this.datenSammlung.profile;
-        inputprofile.onchange = function () {
-            current.datenSammlung.profile = inputprofile.value;
-        };
-        this.field.appendChild(inputprofile);
-
+        this.field.appendChild(createinputtextfield("fist -/surname", this.datenSammlung.name, (v)=>current.datenSammlung.name = v));
+        this.field.appendChild(createinputtextfield("phone number", this.datenSammlung.tele, (v)=>current.datenSammlung.tele = v));
+        this.field.appendChild(createinputtextfield("email", this.datenSammlung.email, (v)=>current.datenSammlung.email = v));
+        this.field.appendChild(createinputtextfield("adress1", this.datenSammlung.adress1, (v)=>current.datenSammlung.adress1 = v));
+        this.field.appendChild(createinputtextfield("adress2", this.datenSammlung.adress2, (v)=>current.datenSammlung.adress2 = v));
+        this.field.appendChild(createinputtextareafield("experiences", this.datenSammlungexperiencename, (v)=>current.datenSammlung.experience = v));
+        this.field.appendChild(createinputtextareafield("refrences", this.datenSammlungrefrencesname, (v)=>current.datenSammlung.refrences = v));
+        this.field.appendChild(createinputtextfield("profession", this.datenSammlung.profession, (v)=>current.datenSammlung.profession = v));
+        this.field.appendChild(createinputtextareafield("profile", this.datenSammlung.profile, (v)=>current.datenSammlung.profile = v));
+        
         //carrer
         for (let i = 0; i < this.datenSammlung.carrer.length; i++) {
             this.field.appendChild(document.createElement("br"));
@@ -126,42 +54,10 @@ class CVEditor {
             }
             this.field.appendChild(minusbutton);
 
-            let inputcarrerTime = document.createElement("input");
-            inputcarrerTime.type = "text";
-            inputcarrerTime.placeholder = "Zeit";
-            inputcarrerTime.value = this.datenSammlung.carrer[i].time;
-            inputcarrerTime.onchange = function () {
-                current.datenSammlung.carrer[i].time = inputcarrerTime.value;
-            };
-            this.field.appendChild(inputcarrerTime);
-
-            let inputcarrerType = document.createElement("input");
-            inputcarrerType.type = "text";
-            inputcarrerType.placeholder = "Type";
-            inputcarrerType.value = this.datenSammlung.carrer[i].type;
-            inputcarrerType.onchange = function () {
-                current.datenSammlung.carrer[i].type = inputcarrerType.value;
-            };
-            this.field.appendChild(inputcarrerType);
-
-            let inputcarrerLoc = document.createElement("input");
-            inputcarrerLoc.type = "text";
-            inputcarrerLoc.placeholder = "location";
-            inputcarrerLoc.value = this.datenSammlung.carrer[i].location;
-            inputcarrerLoc.onchange = function () {
-                current.datenSammlung.carrer[i].location = inputcarrerLoc.value;
-            };
-            this.field.appendChild(inputcarrerLoc);
-
-            let inputdescription = document.createElement("textarea");
-            inputdescription.rows = "4";
-            inputdescription.cols = "64";
-            inputdescription.placeholder = "descriptuin";
-            inputdescription.value = this.datenSammlung.carrer[i].description;
-            inputprofile.onchange = function () {
-                current.datenSammlung.carrer[i].description = inputdescription.value;
-            };
-            this.field.appendChild(inputdescription);
+            this.field.appendChild(createinputtextfield("time", current.datenSammlung.carrer[i].time, (v)=>current.datenSammlung.carrer[i].time = v));
+            this.field.appendChild(createinputtextfield("type", current.datenSammlung.carrer[i].type, (v)=>current.datenSammlung.carrer[i].type = v));
+            this.field.appendChild(createinputtextfield("location", current.datenSammlung.carrer[i].location, (v)=>current.datenSammlung.carrer[i].location = v));
+            this.field.appendChild(createinputtextareafield("location", current.datenSammlung.carrer[i].description, (v)=>current.datenSammlung.carrer[i].description = v));
 
             let upbutton = document.createElement("input");
             upbutton.type = "button";
@@ -215,5 +111,16 @@ function createinputtextfield(placeholder, value, setcallback) {
         setcallback(functionimput.value);
     };
     return functionimput;
+}
 
+function createinputtextareafield(placeholder, value, setcallback) {
+    let functionimput = document.createElement("textarea"); //erstellen ein input tag --> mit eigenschaften
+    functionimput.rows = 6;
+    functionimput.cols = 64;
+    functionimput.placeholder = placeholder;
+    functionimput.value = value;
+    functionimput.onchange = function () {
+        setcallback(functionimput.value);
+    };
+    return functionimput;
 }
