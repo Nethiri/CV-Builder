@@ -22,8 +22,8 @@ class CVEditor {
         this.field.appendChild(createinputtextfield("email", this.datenSammlung.email, (v)=>current.datenSammlung.email = v));
         this.field.appendChild(createinputtextfield("adress1", this.datenSammlung.adress1, (v)=>current.datenSammlung.adress1 = v));
         this.field.appendChild(createinputtextfield("adress2", this.datenSammlung.adress2, (v)=>current.datenSammlung.adress2 = v));
-        this.field.appendChild(createinputtextareafield("experiences", this.datenSammlungexperiencename, (v)=>current.datenSammlung.experience = v));
-        this.field.appendChild(createinputtextareafield("refrences", this.datenSammlungrefrencesname, (v)=>current.datenSammlung.refrences = v));
+        this.field.appendChild(createinputtextareafield("experiences", this.datenSammlung.experience, (v)=>current.datenSammlung.experience = v));
+        this.field.appendChild(createinputtextareafield("refrences", this.datenSammlung.refrences, (v)=>current.datenSammlung.refrences = v));
         this.field.appendChild(createinputtextfield("profession", this.datenSammlung.profession, (v)=>current.datenSammlung.profession = v));
         this.field.appendChild(createinputtextareafield("profile", this.datenSammlung.profile, (v)=>current.datenSammlung.profile = v));
         
@@ -31,68 +31,52 @@ class CVEditor {
         for (let i = 0; i < this.datenSammlung.carrer.length; i++) {
             this.field.appendChild(document.createElement("br"));
 
-            let plusbutton = document.createElement("input");
-            plusbutton.type = "button";
-            plusbutton.value = "+";
-            plusbutton.onclick = function () {
+            let plusbutton = createbutton("+",function () {
                 //was macht der button
                 current.datenSammlung.carrer.splice(i + 1, 0, {"time": "", "type": "", "location": "", "description": ""})
                 current.buildEditor();
-            }
+            });
             this.field.appendChild(plusbutton);
 
-            let minusbutton = document.createElement("input");
-            minusbutton.type = "button";
-            minusbutton.value = "-";
-            minusbutton.onclick = function () {
+            let minusbutton = createbutton("-",function () {
                 //was macht der button
                 current.datenSammlung.carrer.splice(i, 1)
                 current.buildEditor();
-            }
+            });
             if (this.datenSammlung.carrer.length == 1) {
                 minusbutton.disabled = true;
             }
             this.field.appendChild(minusbutton);
 
+            
             this.field.appendChild(createinputtextfield("time", current.datenSammlung.carrer[i].time, (v)=>current.datenSammlung.carrer[i].time = v));
             this.field.appendChild(createinputtextfield("type", current.datenSammlung.carrer[i].type, (v)=>current.datenSammlung.carrer[i].type = v));
             this.field.appendChild(createinputtextfield("location", current.datenSammlung.carrer[i].location, (v)=>current.datenSammlung.carrer[i].location = v));
             this.field.appendChild(createinputtextareafield("location", current.datenSammlung.carrer[i].description, (v)=>current.datenSammlung.carrer[i].description = v));
 
-            let upbutton = document.createElement("input");
-            upbutton.type = "button";
-            upbutton.value = "\u25B2";
-            upbutton.onclick = function () {
+            let upbutton = createbutton("\u25B2",function () {
                 //was macht der button
                 let buff = current.datenSammlung.carrer[i];
                 current.datenSammlung.carrer[i] = current.datenSammlung.carrer[i - 1];
                 current.datenSammlung.carrer[i - 1] = buff;
                 current.buildEditor();
-            }
+            });
             if (i == 0) {
                 upbutton.disabled = true;
             }
             this.field.appendChild(upbutton);
 
-            let downbutton = document.createElement("input");
-            downbutton.type = "button";
-            downbutton.value = "\u25BC";
-            downbutton.onclick = function () {
+            let downbutton = createbutton("\u25BC",function () {
                 //was macht der button
                 let buff = current.datenSammlung.carrer[i];
                 current.datenSammlung.carrer[i] = current.datenSammlung.carrer[i + 1];
                 current.datenSammlung.carrer[i + 1] = buff;
                 current.buildEditor();
-            }
+            });
             if (i == current.datenSammlung.carrer.length - 1) {
                 downbutton.disabled = true;
             }
-
             this.field.appendChild(downbutton);
-
-
-           
-
 
         }
         this.field.appendChild(document.createElement("br"));
@@ -123,4 +107,13 @@ function createinputtextareafield(placeholder, value, setcallback) {
         setcallback(functionimput.value);
     };
     return functionimput;
+}
+
+function createbutton(value,onclick) {
+    let ret = document.createElement("input");
+    ret.type = "button";
+    ret.value = value;
+    ret.onclick = onclick;
+    return ret;
+    
 }
