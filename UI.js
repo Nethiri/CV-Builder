@@ -6,7 +6,7 @@ class CVEditor {
 
     buildEditor() {
         let current = this;
-        this.field.innerHTML = "" //lösche alles was im field ist (aus dem HTML element)
+        this.field.innerHTML = "" //lÃ¶sche alles was im field ist (aus dem HTML element)
 
         //let inputname = document.createElement("input"); //erstellen ein input tag --> mit eigenschaften
         //inputname.type = "text";
@@ -35,7 +35,7 @@ class CVEditor {
 
         let inputemails = document.createElement("input");
         inputemails.type = "text";
-        inputemails.placeholder = "emailz";
+        inputemails.placeholder = "email";
         inputemails.value = this.datenSammlung.email;
         inputemails.onchange = function () {
             current.datenSammlung.email = inputemails.value;
