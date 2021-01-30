@@ -26,7 +26,9 @@ class CVEditor {
         this.field.appendChild(createinputtextareafield("refrences", this.datenSammlung.refrences, (v)=>current.datenSammlung.refrences = v));
         this.field.appendChild(createinputtextfield("profession", this.datenSammlung.profession, (v)=>current.datenSammlung.profession = v));
         this.field.appendChild(createinputtextareafield("profile", this.datenSammlung.profile, (v)=>current.datenSammlung.profile = v));
-        
+        this.field.appendChild(createinputtextareafield("skills", this.datenSammlung.skills, (v) => current.datenSammlung.skills = v));
+
+
         //carrer
         for (let i = 0; i < this.datenSammlung.carrer.length; i++) {
             this.field.appendChild(document.createElement("br"));
@@ -40,7 +42,7 @@ class CVEditor {
 
             let minusbutton = createbutton("-",function () {
                 //was macht der button
-                current.datenSammlung.carrer.splice(i, 1)
+                current.datenSammlung.carrer.splice(i, 1);
                 current.buildEditor();
             });
             if (this.datenSammlung.carrer.length == 1) {
@@ -52,7 +54,7 @@ class CVEditor {
             this.field.appendChild(createinputtextfield("time", current.datenSammlung.carrer[i].time, (v)=>current.datenSammlung.carrer[i].time = v));
             this.field.appendChild(createinputtextfield("type", current.datenSammlung.carrer[i].type, (v)=>current.datenSammlung.carrer[i].type = v));
             this.field.appendChild(createinputtextfield("location", current.datenSammlung.carrer[i].location, (v)=>current.datenSammlung.carrer[i].location = v));
-            this.field.appendChild(createinputtextareafield("location", current.datenSammlung.carrer[i].description, (v)=>current.datenSammlung.carrer[i].description = v));
+            this.field.appendChild(createinputtextareafield("discription", current.datenSammlung.carrer[i].description, (v)=>current.datenSammlung.carrer[i].description = v));
 
             let upbutton = createbutton("\u25B2",function () {
                 //was macht der button
@@ -81,7 +83,54 @@ class CVEditor {
         }
         this.field.appendChild(document.createElement("br"));
 
-        
+        //academic
+        for (let i = 0; i < this.datenSammlung.academic.length; i++) {
+            this.field.appendChild(document.createElement("br"));
+
+            let plusbutton = createbutton("+", function () {
+                // was macht der plusbutton button
+                current.datenSammlung.academic.splice(i + 1, 0, { "time": "", "description": "" });
+                current.buildEditor(); 
+            });
+            this.field.appendChild(plusbutton);
+
+            let minusbutton = createbutton("-", function () {
+                current.datenSammlung.academic.splice(i, 1);
+                current.buildEditor();
+            })
+            if (this.datenSammlung.academic.length == 1) {
+                minusbutton.disabled = true;
+            }
+            this.field.appendChild(minusbutton);
+
+            this.field.appendChild(createinputtextfield("time", current.datenSammlung.academic[i].time, (v) => current.datenSammlung.academic[i].time = v));
+            this.field.appendChild(createinputtextareafield("description", current.datenSammlung.academic[i].description, (v) => current.datenSammlung.academic[i].description = v));
+
+            let upbutton = createbutton("\u25B2", function () {
+                //was macht der button
+                let buff = current.datenSammlung.academic[i];
+                current.datenSammlung.academic[i] = current.datenSammlung.academic[i - 1];
+                current.datenSammlung.academic[i - 1] = buff;
+                current.buildEditor();
+            });
+            if (i == 0) {
+                upbutton.disabled = true;
+            }
+            this.field.appendChild(upbutton);
+
+            let downbutton = createbutton("\u25BC", function () {
+                //was macht der button
+                let buff = current.datenSammlung.academic[i];
+                current.datenSammlung.academic[i] = current.datenSammlung.academic[i + 1];
+                current.datenSammlung.academic[i + 1] = buff;
+                current.buildEditor();
+            });
+            if (i == current.datenSammlung.academic.length - 1) {
+                downbutton.disabled = true;
+            }
+            this.field.appendChild(downbutton);
+        }
+        this.field.appendChild(document.createElement("br"));
 
     } // function to build
 }
